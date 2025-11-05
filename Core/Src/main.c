@@ -397,6 +397,7 @@ void TIM6_Init(void)
     TIM6->CR1 |= TIM_CR1_CEN;
 }
 char c = 0;   // khai báo ngoài
+uint8_t mode = 1;
 int main(void)
 {	
 	TIM2_us_init();
@@ -426,7 +427,7 @@ NVIC->ISER[0] = (1 << USART2_IRQn); // Kích ho?t ng?t USART2
 	char t[32];
 	ADC1_Init();
 PWM_Init();
-uint8_t mode_rx = 0; // 0: dang truy?n, 1: dang nh?n
+
 GPIOA->BRR = 1 << 5;
 	
   //HAL_TIM_Base_Start(&htim6);  // for us Delay
@@ -472,9 +473,10 @@ GPIOA->BRR = 1 << 5;
 		GPIOA->BRR = 1 << 5;
 		uint32_t z = uwTick;
 		while ((uwTick - z) < 500){}
-//uint16_t pwm_duty = ((4095 - adc_val) * 1000) / 4095;
-//TIM2->CCR2 = pwm_duty;
-
+if (mode == 1){
+uint16_t pwm_duty = ((4095 - adc_val) * 1000) / 4095;
+TIM2->CCR2 = pwm_duty;
+}
 //if (USART2->ISR & (1 << 5)) {
 //    c = USART2->RDR;  // d?c d? li?u
 //	GPIOA->BRR = 1 << 4;
@@ -523,7 +525,13 @@ void USART1_IRQHandler(void)
 }
 else if (c == '0') {
     GPIOA->BRR = 1 << 6; // tat LED
-}		
+}
+else if (c == 'm'){
+		mode = 0;
+}
+else {
+		mode = 1;
+}
 	}
 void USART2_IRQHandler(void)
 {

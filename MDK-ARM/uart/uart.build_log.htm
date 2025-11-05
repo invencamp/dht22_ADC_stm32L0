@@ -28,14 +28,14 @@ Project File Date:  10/31/2025
 *** Using Compiler 'V6.24', folder: 'C:\Users\admin\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'uart'
 assembling startup_stm32l073xx.s...
-../Core/Src/main.c(469): warning: while loop has empty body [-Wempty-body]
-  469 |                 while (!(USART2->ISR & (1 << 6)));     // Ch? TC (transmission complete)
+../Core/Src/main.c(470): warning: while loop has empty body [-Wempty-body]
+  470 |                 while (!(USART2->ISR & (1 << 6)));     // Ch? TC (transmission complete)
       |                                                  ^
-../Core/Src/main.c(469): note: put the semicolon on a separate line to silence this warning
+../Core/Src/main.c(470): note: put the semicolon on a separate line to silence this warning
 1 warning generated.
 compiling main.c...
 linking...
-Program Size: Code=9284 RO-data=528 RW-data=4 ZI-data=1668  
+Program Size: Code=9356 RO-data=528 RW-data=8 ZI-data=1664  
 FromELF: creating hex file...
 "uart\uart.axf" - 0 Error(s), 1 Warning(s).
 
@@ -60,7 +60,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.1
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
